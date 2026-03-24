@@ -1,45 +1,55 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+
+// 1. IMPORTAÇÕES (Ajuste os nomes dos arquivos se necessário)
+import imgGloves from '@/assets/img/cards/gloves.jpg';
+import imgMask from '@/assets/img/cards/mask.jpg';
+import imgPhones from '@/assets/img/cards/phones.jpg';
+import imgHelmet from '@/assets/img/cards/helmet.jpg';
+import imgGlasses from '@/assets/img/cards/glasses.jpg';
+import imgVest from '@/assets/img/cards/vest.jpg';
+import imgBoots from '@/assets/img/cards/boots.jpg';
+import imgCarabiner from '@/assets/img/cards/carabiner.jpg';
 
 const cards = [
   {
-    gif:   "/img/gifs/gloves.gif",
-    title: "Luvas",
-    desc:  "Protegem as mãos contra cortes, abrasões e agentes químicos. Essenciais para qualquer atividade que exige segurança no manuseio.",
+    image: imgGloves,
+    title: 'Luvas',
+    desc: 'Protegem as mãos contra riscos mecânicos e térmicos, garantindo aderência e segurança em diversas atividades.',
   },
   {
-    gif:   "/img/gifs/mask.gif",
-    title: "Respirador",
-    desc:  "Filtra partículas, vapores e poeiras, garantindo respiração segura. Ideal para ambientes com exposição a contaminantes.",
+    image: imgMask,
+    title: 'Respirador',
+    desc: 'Filtra partículas, vapores e poeiras, garantindo respiração segura em ambientes com contaminantes.',
   },
   {
-    gif:   "/img/gifs/phones.gif",
-    title: "Abafador",
-    desc:  "Reduz o impacto do ruído e preserva a saúde auditiva. Indispensável em áreas com máquinas e altos níveis de som.",
+    image: imgPhones,
+    title: 'Abafador',
+    desc: 'Reduz o impacto do ruído e preserva a saúde auditiva em áreas com máquinas e altos níveis de som.',
   },
   {
-    gif:   "/img/gifs/helmet.gif",
-    title: "Capacete",
-    desc:  "Protege a cabeça contra impactos e quedas de objetos. Segurança obrigatória em obras e ambientes industriais.",
+    image: imgHelmet,
+    title: 'Capacete',
+    desc: 'Protege a cabeça contra impactos e quedas de objetos. Segurança obrigatória em obras e indústrias.',
   },
   {
-    gif:   "/img/gifs/glasses.gif",
-    title: "Óculos",
-    desc:  "Evita lesões oculares causadas por partículas e respingos. Ideal para operações de corte, solda e manuseio de químicos.",
+    image: imgGlasses,
+    title: 'Óculos',
+    desc: 'Evita lesões oculares causadas por partículas e respingos. Ideal para corte, solda e manuseio químico.',
   },
   {
-    gif:   "/img/gifs/vest.gif",
-    title: "Colete",
-    desc:  "Aumenta a visibilidade do trabalhador e previne acidentes. Perfeito para áreas externas e operações de movimentação.",
+    image: imgVest,
+    title: 'Colete',
+    desc: 'Aumenta a visibilidade do trabalhador e previne acidentes em áreas de movimentação e externas.',
   },
   {
-    gif:   "/img/gifs/boots.gif",
-    title: "Botina",
-    desc:  "Garante proteção contra quedas de objetos, perfurações e escorregões. Conforto e segurança para o dia inteiro de trabalho.",
+    image: imgBoots,
+    title: 'Botina',
+    desc: 'Garante proteção contra quedas de objetos e perfurações, oferecendo conforto para o dia todo.',
   },
   {
-    gif:   "/img/gifs/carabiner.gif",
-    title: "Cinto",
-    desc:  "Previne quedas em trabalho em altura, garantindo proteção total ao trabalhador.",
+    image: imgCarabiner,
+    title: 'Cinto',
+    desc: 'Previne quedas em trabalho em altura, garantindo proteção total e estabilidade ao trabalhador.',
   },
 ];
 
@@ -55,8 +65,7 @@ const FlipCards = () => {
           className="text-center mb-14"
         >
           <h2 className="text-4xl md:text-6xl font-display mb-3">
-            EPIs que fazem a{" "}
-            <span className="text-gradient-amber">diferença</span>
+            EPIs que fazem a <span className="text-gradient-amber">diferença</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Passe o mouse para conhecer cada equipamento
@@ -72,18 +81,16 @@ const FlipCards = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07 }}
-              /* Card container — overflow hidden para o slide-up funcionar */
               className="group relative h-[300px] rounded-xl overflow-hidden border border-border
                          hover:border-primary/40 transition-colors cursor-pointer"
             >
-              {/* ── FRENTE: GIF centralizado ─────────────────────────────── */}
+              {/* FRENTE: Imagem Centralizada */}
               <div
                 className="absolute inset-0 flex items-center justify-center
                            bg-gradient-card
-                           transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]
+                           transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
                            group-hover:-translate-y-[30%]"
               >
-                {/* Ícone âmbar decorativo de fundo */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-5">
                   <span className="text-[8rem] font-display text-primary leading-none">
                     {card.title[0]}
@@ -91,13 +98,13 @@ const FlipCards = () => {
                 </div>
 
                 <img
-                  src={card.gif}
+                  src={card.image} // AGORA É SEMPRE card.image
                   alt={card.title}
-                  className="w-24 h-24 object-contain relative z-10 drop-shadow-lg"
+                  className="w-full h-full object-cover absolute inset-0"
                 />
               </div>
 
-              {/* ── VERSO: slide de baixo para cima ─────────────────────── */}
+              {/* VERSO: Slide de baixo para cima */}
               <div
                 className="absolute bottom-0 left-0 right-0
                            bg-gradient-to-b from-background/95 to-card
@@ -108,25 +115,14 @@ const FlipCards = () => {
                            translate-y-full
                            transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]
                            group-hover:translate-y-0
-                           h-[65%]"
+                           h-[100%]"
               >
-                {/* Linha âmbar decorativa no topo */}
                 <span className="block w-8 h-0.5 bg-gradient-amber rounded-full mb-1" />
-
                 <h4 className="text-2xl font-display text-foreground leading-tight">
                   {card.title}
                 </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {card.desc}
-                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
               </div>
-
-              {/* Borda âmbar sutil no hover */}
-              <div
-                className="absolute inset-0 rounded-xl ring-0 ring-primary/0
-                           group-hover:ring-1 group-hover:ring-primary/20
-                           transition-all duration-500 pointer-events-none"
-              />
             </motion.div>
           ))}
         </div>

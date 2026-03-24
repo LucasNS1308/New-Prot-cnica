@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 
 // ─── TIPOS ────────────────────────────────────────────────────────────────────
 interface Product {
@@ -12,40 +12,112 @@ interface Product {
 }
 
 // ─── CATEGORIAS ───────────────────────────────────────────────────────────────
-const categories: { id: string; label: string; image: string }[] = [
-  { id: "altura",      label: "Trabalho em Altura",        image: "/img/categorias/altura.jpg"      },
-  { id: "industria",   label: "Indústria",                 image: "/img/categorias/industria.jpg"   },
-  { id: "alimenticia", label: "Alimentícia",               image: "/img/categorias/food.jpg"        },
-  { id: "civil",       label: "Construção Civil",          image: "/img/categorias/civil.jpg"       },
-  { id: "laboratorio", label: "Laboratório / Área Química",image: "/img/categorias/quimica.jpg"     },
-  { id: "soldagem",    label: "Soldagem / Metalurgia",     image: "/img/categorias/soldagem.jpg"    },
-  { id: "eletrica",    label: "Eletricidade",              image: "/img/categorias/eletrica.jpg"    },
-  { id: "respirar",    label: "Proteção Respiratória",     image: "/img/categorias/respiratorio.jpg"},
-  { id: "limpeza",     label: "Limpeza e Saneamento",      image: "/img/categorias/limpeza.jpg"     },
-  { id: "agro",        label: "Agro / Agricultura / Florestal", image: "/img/categorias/agro.jpg"  },
-  { id: "logistica",   label: "Logística",                 image: "/img/categorias/logistica.jpg"   },
+const categories = [
+  { id: 'altura', label: 'Trabalho em Altura', image: '/categorias/altura.jpg' },
+  { id: 'industria', label: 'Indústria', image: '/categorias/industria.jpg' },
+  { id: 'alimenticia', label: 'Alimentícia', image: '/categorias/food.jpg' },
+  { id: 'civil', label: 'Construção Civil', image: '/categorias/civil.jpg' },
+  { id: 'laboratorio', label: 'Laboratório / Área Química', image: '/categorias/quimica.jpg' },
+  { id: 'soldagem', label: 'Soldagem / Metalurgia', image: '/categorias/soldagem.jpg' },
+  { id: 'eletrica', label: 'Eletricidade', image: '/categorias/eletrica.jpg' },
+  { id: 'respirar', label: 'Proteção Respiratória', image: '/categorias/respiratorio.jpg' },
+  { id: 'limpeza', label: 'Limpeza e Saneamento', image: '/categorias/limpeza.jpg' },
+  { id: 'agro', label: 'Agro / Agricultura / Florestal', image: '/categorias/agro.jpg' },
+  { id: 'logistica', label: 'Logística', image: '/categorias/logistica.jpg' },
 ];
 
 // ─── PRODUTOS POR CATEGORIA ────────────────────────────────────────────────────
 const products: Record<string, Product[]> = {
   altura: [
-    { name: "Capacete",  desc: "Descrição do produto...", ca: "Ca: ",      ref: "Referência:", images: ["/produtos/14161.png"] },
-    { name: "Luva",      desc: "Descrição do produto...", ca: "Ca: ",      ref: "Referência:", images: ["/produtos/13932.png"] },
-    { name: "",          desc: "Descrição do produto...", ca: "Ca: ",      ref: "Referência:", images: [] },
-    { name: "",          desc: "Descrição do produto...", ca: "Ca: ",      ref: "Referência:", images: [] },
-    { name: "",          desc: "Descrição do produto...", ca: "Ca: ",      ref: "Referência:", images: [] },
-    { name: "",          desc: "Descrição do produto...", ca: "Ca: ",      ref: "Referência:", images: [] },
+    {
+      name: 'Capacete',
+      desc: 'Descrição do produto...',
+      ca: 'Ca: ',
+      ref: 'Referência:',
+      images: ['/produtos/14161.png'],
+    },
+    {
+      name: 'Luva',
+      desc: 'Descrição do produto...',
+      ca: 'Ca: ',
+      ref: 'Referência:',
+      images: ['/produtos/13932.png'],
+    },
+    { name: '', desc: 'Descrição do produto...', ca: 'Ca: ', ref: 'Referência:', images: [] },
+    { name: '', desc: 'Descrição do produto...', ca: 'Ca: ', ref: 'Referência:', images: [] },
+    { name: '', desc: 'Descrição do produto...', ca: 'Ca: ', ref: 'Referência:', images: [] },
+    { name: '', desc: 'Descrição do produto...', ca: 'Ca: ', ref: 'Referência:', images: [] },
   ],
-  industria:   Array(9).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  alimenticia: Array(9).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  civil:       Array(9).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  laboratorio: Array(8).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  soldagem:    Array(10).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  eletrica:    Array(1).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  respirar:    Array(1).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  limpeza:     Array(1).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  agro:        Array(1).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
-  logistica:   Array(1).fill({ name: "", desc: "Descrição do produto...", ca: "Ca: 3658224", ref: "Referência:", images: [] }),
+  industria: Array(9).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  alimenticia: Array(9).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  civil: Array(9).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  laboratorio: Array(8).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  soldagem: Array(10).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  eletrica: Array(1).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  respirar: Array(1).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  limpeza: Array(1).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  agro: Array(1).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
+  logistica: Array(1).fill({
+    name: '',
+    desc: 'Descrição do produto...',
+    ca: 'Ca: 3658224',
+    ref: 'Referência:',
+    images: [],
+  }),
 };
 
 // ─── SKELETON ─────────────────────────────────────────────────────────────────
@@ -61,13 +133,13 @@ const SkeletonCard = () => (
 // ─── COMPONENTE PRINCIPAL ─────────────────────────────────────────────────────
 const ProductsSection = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [loading, setLoading]               = useState(false);
-  const [items, setItems]                   = useState<Product[]>([]);
-  const productsSectionRef                  = useRef<HTMLDivElement>(null);
-  const trackRef                            = useRef<HTMLDivElement>(null);
-  const animFrameRef                        = useRef<number>(0);
-  const offsetRef                           = useRef(0);
-  const speedRef                            = useRef(0.5); // px por frame
+  const [loading, setLoading] = useState(false);
+  const [items, setItems] = useState<Product[]>([]);
+  const productsSectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const animFrameRef = useRef<number>(0);
+  const offsetRef = useRef(0);
+  const speedRef = useRef(0.5); // px por frame
 
   // ── Carrossel infinito via requestAnimationFrame ──────────────────────────
   useEffect(() => {
@@ -94,7 +166,7 @@ const ProductsSection = () => {
 
     // Scroll suave até a seção de produtos
     setTimeout(() => {
-      productsSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      productsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 50);
 
     // Simula carregamento (skeleton por 600ms)
@@ -138,8 +210,8 @@ const ProductsSection = () => {
               onClick={() => handleCategoryClick(cat.id)}
               className={`group flex-shrink-0 w-56 rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer ${
                 activeCategory === cat.id
-                  ? "border-primary shadow-amber-glow"
-                  : "border-border hover:border-primary/40"
+                  ? 'border-primary shadow-amber-glow'
+                  : 'border-border hover:border-primary/40'
               }`}
             >
               {/* Imagem */}
@@ -150,17 +222,15 @@ const ProductsSection = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                {activeCategory === cat.id && (
-                  <div className="absolute inset-0 bg-primary/20" />
-                )}
+                {activeCategory === cat.id && <div className="absolute inset-0 bg-primary/20" />}
               </div>
               {/* Label */}
               <div className="bg-card px-3 py-3">
                 <span
                   className={`text-sm font-medium leading-tight line-clamp-2 transition-colors ${
                     activeCategory === cat.id
-                      ? "text-primary"
-                      : "text-foreground group-hover:text-primary"
+                      ? 'text-primary'
+                      : 'text-foreground group-hover:text-primary'
                   }`}
                 >
                   {cat.label}
@@ -178,9 +248,9 @@ const ProductsSection = () => {
             ref={productsSectionRef}
             key="products"
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
             <div className="container mt-10">
@@ -205,7 +275,9 @@ const ProductsSection = () => {
               {/* Grid de produtos */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pb-10">
                 {loading
-                  ? Array(6).fill(0).map((_, i) => <SkeletonCard key={i} />)
+                  ? Array(6)
+                      .fill(0)
+                      .map((_, i) => <SkeletonCard key={i} />)
                   : items.map((product, i) => (
                       <motion.div
                         key={i}

@@ -24,6 +24,7 @@ const addresses = [
 const phones = [
   { number: '553532342504', label: '(16) 3234-2500 — Matriz Ribeirão Preto' },
   { number: '554320181000', label: '(43) 2018-1000 — Filial Londrina' },
+  { number: '554840423001', label: '(48) 4042-3001 — Filial Santa Catarina' },
 ];
 
 const socials = [
@@ -144,8 +145,6 @@ const Footer = () => {
             <div className="mt-6">
               <h4 className="font-display text-base text-foreground mb-2">Certificações</h4>
               <div className="space-y-1 text-xs text-muted-foreground">
-                <p>ISO 9001:2015</p>
-                <p>ISO 45001:2018</p>
                 <p>Certificação INMETRO</p>
               </div>
             </div>
