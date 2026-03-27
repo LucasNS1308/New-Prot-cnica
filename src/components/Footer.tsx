@@ -22,7 +22,7 @@ const addresses = [
 ];
 
 const phones = [
-  { number: '553532342504', label: '(16) 3234-2500 — Matriz Ribeirão Preto' },
+  { number: '553532342504', label: '(16) 3234-2504 — Matriz Ribeirão Preto' },
   { number: '554320181000', label: '(43) 2018-1000 — Filial Londrina' },
   { number: '554840423001', label: '(48) 4042-3001 — Filial Santa Catarina' },
 ];
@@ -40,13 +40,13 @@ const socials = [
 
 const Footer = () => {
   return (
-    <footer className="bg-card border-t-2 border-t-accent" id="contato">
+    <footer className="bg-card border-t-2 border-t-accent " id="contato">
       {/* ── Mapa real da Protécnica ──────────────────────────────────────── */}
       <iframe
         title="Localização Protécnica — Matriz Ribeirão Preto"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.432007626835!2d-47.80041369999999!3d-21.0953362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9be5643c4f7c9%3A0x9f2418e681163e09!2sProt%C3%A9cnica%20EPI&#39;s%20-%20Matriz!5e0!3m2!1spt-BR!2sbr!4v1764934733993!5m2!1spt-BR!2sbr"
         width="100%"
-        height="340"
+        height="350"
         style={{ border: 0, display: 'block', alignItems: 'center' }}
         allowFullScreen
         loading="lazy"

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { Building2, Award, Users, Truck } from 'lucide-react';
 import videoProtenica from '@/assets/Videos/Video.mp4';
+import { Building2, ShieldCheck, Users, Truck } from 'lucide-react';
 
 const stats = [
   { icon: Building2, value: '+30', label: 'Anos de Mercado' },
-  { icon: Award, value: 'ISO', label: 'Certificações' },
+  { icon: ShieldCheck, value: '100%', label: 'Produtos com CA Ativo' },
   { icon: Users, value: '+4000', label: 'Clientes Ativos' },
   { icon: Truck, value: '24h', label: 'Entrega Expressa' },
 ];

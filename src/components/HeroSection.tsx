@@ -58,11 +58,18 @@ const HeroSection = () => {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <button className="group bg-gradient-amber text-primary-foreground px-8 py-4 rounded-lg font-semibold text-base flex items-center justify-center gap-2 hover:opacity-90 transition-all animate-pulse-glow">
-              Solicitar Consultoria Técnica
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <a
+                href="https://wa.me/551632342504?text=Olá!%20Gostaria%20de%20solicitar%20uma%20consultoria%20técnica."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-gradient-amber text-primary-foreground px-8 py-4 rounded-lg font-semibold text-base flex items-center justify-center gap-2 hover:opacity-90 transition-all animate-pulse-glow"
+              >
+                Solicite orçamento
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </button>
             <button className="border border-accent/40 text-foreground px-8 py-4 rounded-lg font-semibold text-base hover:bg-accent hover:text-accent-foreground transition-all">
-              Explorar Catálogo 2026 em breve.....
+              Explorar Catálogo 2026
             </button>
           </div>
 
